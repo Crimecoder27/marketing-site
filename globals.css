@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --teal:    #73D1D3;
+  --sage:    #BADCC3;
+  --coral:   #DBA380;
+  --bg-dark: #0a0f0f;
+  --bg-mid:  #0f1a1a;
+  --glass-bg:        rgba(115, 209, 211, 0.04);
+  --glass-border:    rgba(115, 209, 211, 0.15);
+  --glass-shadow:    0 8px 32px rgba(0, 0, 0, 0.4);
+  --text-primary:    #f0fafa;
+  --text-secondary:  #a8c8c9;
+  --text-muted:      #6a9a9b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 20%,  rgba(115,209,211,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 80%,  rgba(186,220,195,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 50%,  rgba(219,163,128,0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-strong {
+  background: rgba(115,209,211,0.07);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(115,209,211,0.2);
+  box-shadow: 0 12px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.font-display { font-family: 'Playfair Display', serif; }
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--sage) 50%, var(--coral) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--teal), var(--sage));
+  color: #0a1515;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(115,209,211,0.3); }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-coral {
+  background: linear-gradient(135deg, var(--coral), #c8876a);
+  color: #1a0800;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-coral:hover { filter: brightness(1.1); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(219,163,128,0.3); }
+
+.input-glass {
+  background: rgba(115,209,211,0.05);
+  border: 1px solid rgba(115,209,211,0.2);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input-glass::placeholder { color: var(--text-muted); }
+.input-glass:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(115,209,211,0.1);
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: rgba(115,209,211,0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--teal); }
+
+.badge-amazon   { background: rgba(255,153,0,0.15);  color: #ff9900; border: 1px solid rgba(255,153,0,0.3); }
+.badge-flipkart { background: rgba(40,116,240,0.15); color: #2874f0; border: 1px solid rgba(40,116,240,0.3); }
+.badge-myntra   { background: rgba(255,60,120,0.15); color: #ff3c78; border: 1px solid rgba(255,60,120,0.3); }
+.badge-other    { background: rgba(115,209,211,0.12); color: var(--teal); border: 1px solid var(--glass-border); }
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, rgba(115,209,211,0.04) 25%, rgba(115,209,211,0.10) 50%, rgba(115,209,211,0.04) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
+}
+
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+.floating { animation: float 4s ease-in-out infinite; }
